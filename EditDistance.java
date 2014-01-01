@@ -66,24 +66,18 @@ public class EditDistance {
   private static void recoverAlignment(int[][] opt) {
     int i = 0; int j = 0;
     while(i < M || j < N) {
-      if (j == N){
-        System.out.println(m.charAt(i) + " " + '-' + " " + '2');
-        i++;
-      } else if (i == M){
-        System.out.println('-' + " " + n.charAt(j) + " " + '2');
-        j++;
-      } else if(opt[i][j] == opt[i + 1][j + 1] && m.charAt(i) == n.charAt(j)) {
+      if(i < M && j < N && opt[i][j] == opt[i + 1][j + 1] && m.charAt(i) == n.charAt(j)) {
         System.out.println(m.charAt(i) + " " + n.charAt(j) + " " + '0');
         i++; j++;
-      } else if(opt[i][j] == opt[i + 1][j + 1] + 1) {
+      } else if(i < M && j < N && opt[i][j] == opt[i + 1][j + 1] + 1) {
         System.out.println(m.charAt(i) + " " + n.charAt(j) + " " + '1');
         i++; j++;
-      } else if(opt[i][j] == opt[i + 1][j] + 2) {
+      } else if(i < M && opt[i][j] == opt[i + 1][j] + 2) {
         System.out.println(m.charAt(i) + " " + '-' + " " + '2');
         i++;
-      } else if(opt[i][j] == opt[i][j + 1] + 2) {
+      } else if(j < N && opt[i][j] == opt[i][j + 1] + 2) {
         System.out.println('-' + " " + n.charAt(j) + " " + '2');
-        j++;
+        j++;  
       }
     }
   }
